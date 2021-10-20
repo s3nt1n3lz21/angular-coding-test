@@ -1,0 +1,31 @@
+.label {
+  flex: 0 0 100px;
+  padding-right: 5px;
+}
+
+.field-row {
+  display: flex;
+  flex: 0 0 100px;
+  padding: 5px;
+}
+
+.input {
+  flex: 1 0 100px;
+}
+
+.label-terms {
+  padding-left: 5px;
+}
+
+.submit-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.error {
+  color: red;
+}
+
+.input-error {
+  border-color: red;
+}

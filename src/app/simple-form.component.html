@@ -1,0 +1,64 @@
+<h1>Angular Test</h1>
+<form [formGroup]="userForm" (ngSubmit)="submit()">
+  <div>
+    <div class="field-row">
+      <label class="label">Title</label>
+      <select formControlName="title">
+        <option value="">-- Select an option --</option>
+        <option
+          *ngFor="let title of titles"
+          value="{{ title.name }}"
+          selected="title.isDefault"
+        >
+          {{ title.name }}
+        </option>
+        <!-- TODO: add titles to dropdown -->
+      </select>
+    </div>
+    <div class="field-row">
+      <label class="label" for="firstName">First name</label>
+      <input
+        class="input"
+        formControlName="firstName"
+        type="text"
+        placeholder="First name"
+      />
+    </div>
+    <div class="field-row">
+      <label class="label" for="lastName">Last name</label>
+      <input
+        class="input"
+        [ngClass]="{
+          'input-error':
+            (!this.userForm.controls.lastName.valid &&
+              userForm.controls['lastName']?.touched) ||
+            (submitPressed && !userForm.controls['lastName']?.touched)
+        }"
+        formControlName="lastName"
+        type="text"
+        placeholder="Last name"
+      />
+    </div>
+    <p
+      class="error"
+      *ngIf="
+        (!this.userForm.controls.lastName.valid &&
+          userForm.controls['lastName']?.touched) ||
+        (submitPressed && !userForm.controls['lastName']?.touched)
+      "
+    >
+      * Last name is mandatory
+    </p>
+    <!-- TODO: add error message -->
+    <span></span>
+    <div class="field-row">
+      <input type="checkbox" formControlName="acceptTerms" />
+      <label class="label-terms" for="acceptTerms"
+        >I accept the terms & conditions</label
+      >
+    </div>
+    <div class="field-row submit-container">
+      <button [disabled]="submitDisabled" type="submit">Submit</button>
+    </div>
+  </div>
+</form>
